@@ -1,7 +1,6 @@
 $(function() {
     getUserInfo();
     $('#btnLogout').click(function(e) {
-        console.log(e);
         layui.layer.confirm('确定退出?', { icon: 3, title: '提示' }, function(index) {
             //do something
             localStorage.removeItem('token');
@@ -18,6 +17,7 @@ function getUserInfo() {
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败');
             }
+            console.log(res.data);
             renderAvatar(res.data);
         }
     })

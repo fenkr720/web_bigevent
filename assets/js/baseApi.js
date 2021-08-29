@@ -1,5 +1,4 @@
 $.ajaxPrefilter(function(options) {
-    console.log(options.url);
     options.url = 'http://api-breakingnews-web.itheima.net' + options.url;
     if (options.url.indexOf('/my/') != -1) {
         options.headers = {
@@ -7,12 +6,9 @@ $.ajaxPrefilter(function(options) {
         };
     }
     options.complete = function(res) {
-        console.log(res.responseJSON);
         if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
-            console.log('abc');
             localStorage.removeItem('token');
             location.href = '/login.html'
         }
     }
-
 })
